@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import UserTileSearch from '../Elements/UserTileSearch'
 
 export default function fromPage() {
     const [ErrorMsg, setError] = useState("")
     const [User, setUser] = useState("")
     const [Friend, setFriend] = useState("")
-    const [CallData, setCallData] = useState("") 
+    const [CallData, setCallData] = useState([]) 
     const router = useRouter()
     const search = async (e) => {
         try {
@@ -41,12 +42,6 @@ export default function fromPage() {
             
         }
     }
-
-    const Friend_elem = ({user}) => (
-        <div>
-            {user.username}
-        </div>
-    )
     
     return(
         <div>
@@ -57,6 +52,11 @@ export default function fromPage() {
         <text>User: {User} Friend: {Friend}</text>
         <button onClick={routeToNext}>Click to route</button>
         <div>Results: {JSON.stringify(CallData)}</div>
+        {CallData.map(user => <UserTileSearch key={user.username} onClick={() => {setFriend(user.username); console.log("clicked!!")}} data={user}/>)}
+        {/* onClick doesn't work yet but im working on it, the map function is important make sure you understand it
+         not sure if the key property works properly here but you can always read about it (as far i know now it not that important tbh)
+         make sure you understand how the data is passed to each individual custom reatc component
+         also, look how the custom compnents are created and used*/}
         </div>
     )
 }

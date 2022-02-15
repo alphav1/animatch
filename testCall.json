@@ -1,0 +1,82 @@
+[
+    {
+        "user": {
+            "username": "pipus",
+            "url": "https://myanimelist.net/profile/pipus",
+            "images": {
+                "jpg": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/12420439.jpg?t=1644511200"
+                },
+                "webp": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/12420439.webp?t=1644511200"
+                }
+            }
+        },
+        "last_online": "2022-02-10T16:53:47+00:00",
+        "friends_since": "2021-09-03T07:21:00+00:00"
+    },
+    {
+        "user": {
+            "username": "ast-rum",
+            "url": "https://myanimelist.net/profile/ast-rum",
+            "images": {
+                "jpg": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/9853546.jpg?t=1644436800"
+                },
+                "webp": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/9853546.webp?t=1644436800"
+                }
+            }
+        },
+        "last_online": "2022-02-09T11:50:00+00:00",
+        "friends_since": "2021-03-27T06:42:00+00:00"
+    },
+    {
+        "user": {
+            "username": "nimfogar",
+            "url": "https://myanimelist.net/profile/nimfogar",
+            "images": {
+                "jpg": {
+                    "image_url": "https://cdn.myanimelist.net/images/questionmark_50.gif"
+                },
+                "webp": {
+                    "image_url": "https://cdn.myanimelist.net/images/questionmark_50.gif"
+                }
+            }
+        },
+        "last_online": "2022-02-08T05:50:00+00:00",
+        "friends_since": "2021-03-26T05:12:00+00:00"
+    },
+    {
+        "user": {
+            "username": "p4ul4",
+            "url": "https://myanimelist.net/profile/p4ul4",
+            "images": {
+                "jpg": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/14135412.jpg?t=1643289000"
+                },
+                "webp": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/14135412.webp?t=1643289000"
+                }
+            }
+        },
+        "last_online": "2022-01-27T05:09:00+00:00",
+        "friends_since": "2021-12-02T15:20:00+00:00"
+    },
+    {
+        "user": {
+            "username": "Altea_",
+            "url": "https://myanimelist.net/profile/Altea_",
+            "images": {
+                "jpg": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/11726789.jpg?t=1642443600"
+                },
+                "webp": {
+                    "image_url": "https://cdn.myanimelist.net/images/userimages/11726789.webp?t=1642443600"
+                }
+            }
+        },
+        "last_online": "2022-01-17T10:13:00+00:00",
+        "friends_since": "2021-09-07T04:36:00+00:00"
+    }
+]
