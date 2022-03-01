@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 export async function getList(user, param) {
     try {
@@ -12,7 +13,6 @@ export async function getList(user, param) {
         console.log(`ERROR from the API call in search(): ${error}`)
     }
 }
-
 
 function getGenreList(list) {
     let l1 = {}
@@ -73,3 +73,41 @@ export async function compareUsers(user1, user2) {
     console.log(compared2)
     return ({ "watching": compared1, "completed": compared2 })
 }
+
+export async function getScore(user) {
+    let list = await getList(user, "completed")
+    let scoreList = []
+    for (let i = 0; i < list.length; i++) {
+        console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
+        scoreList.push({ "name": list[i].anime.title, "score": list[i].score })
+    }
+    return scoreList
+}
+
+export async function getScoreComp(user1, user2) {
+    let l1 = await getScore(user1)
+    let l2 = await getScore(user2)
+    let commList = []
+    for (let i = 0; i < l1.length; i++) {
+        for (let x = 0; x < l2.length; x++) {
+            if (l2[x].name == l1[i].name) {
+                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score })
+            }
+        }
+    }
+    console.log(commList)
+    console.log("done")
+    return commList
+}
+
+
+
+
+
+/* export async function parseData(User1, User2) {
+    const [data, setData] = useState({ "watching": {}, "completed": {} })
+    setData(await compareUsers(User1, User2))
+    for (let i = 0; i < data.length; i++) {
+        return (Object.keys(data["watching"])[i])
+    }
+}*/

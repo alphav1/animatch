@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import UserAnimeSearch from '../Elements/UserAnimeSearch'
 import UserTileSearch from '../Elements/UserTileSearch'
-import { getList, compareLists, compareUsers } from '../Elements/Functions'
+import { getList, compareLists, compareUsers, getScore, getScoreComp } from '../Elements/Functions'
 
 export default function fromPage() {
     const [User1, setUser1] = useState("")
@@ -36,9 +36,9 @@ export default function fromPage() {
 
     return (
         <div>
-            <button onClick={routeToNext}> Compare </button>
             <div></div>
             <input type="text" onChange={(e) => setUser1(e.target.value)}></input> {User1} <button onClick={async (e) => setListData1(await getList(User1, "completed"))}> Search List </button>
+            <button onClick={routeToNext}> Compare </button>
             <div>
                 Anime List: {ListData1.map(anime => <UserAnimeSearch key={anime.title} data={anime} />)}
             </div>
