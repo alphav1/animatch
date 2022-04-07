@@ -126,8 +126,8 @@ export async function compareFavorites(list1, list2) {
             }
         }
     }
-    console.log(common)
-    console.log(typeof common)
+    console.log("common: "+common)
+    console.log("type match: "+ (typeof common == typeof []))
     return common
 }
 
