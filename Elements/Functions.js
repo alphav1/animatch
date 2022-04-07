@@ -55,7 +55,7 @@ export function compareLists(list1, list2) {
     console.log(list1, list2)
     let l1 = getGenreList(list1)
     let l2 = getGenreList(list2)
-    console.log("internal listCompare:")
+    // console.log("internal listCompare:")
     console.log(l1, l2)
     let common = getCommonGenres(l1, l2)
     console.log(common)
@@ -90,8 +90,8 @@ export async function getScoreComp(user1, user2) {
     let commList = []
     for (let i = 0; i < l1.length; i++) {
         for (let x = 0; x < l2.length; x++) {
-            if (l2[x].name == l1[i].name) {
-                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score })
+            if (l2[x].name == l1[i].name && l2[x].score != 0 && l1[i].score != 0) {
+                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score, "difference": Math.abs(l1[i].score - l2[x].score) })
             }
         }
     }
@@ -100,14 +100,39 @@ export async function getScoreComp(user1, user2) {
     return commList
 }
 
-
-
-
-
-/* export async function parseData(User1, User2) {
-    const [data, setData] = useState({ "watching": {}, "completed": {} })
-    setData(await compareUsers(User1, User2))
-    for (let i = 0; i < data.length; i++) {
-        return (Object.keys(data["watching"])[i])
+export async function getFavorites(user) {
+    try {
+        console.log('call loading')
+        let res = await fetch(`https://api.jikan.moe/v4/users/${user}/favorites`)
+        if (res.status == 200) {
+            console.log(res)
+            let list = await res.json()
+            console.log(list.data.anime)
+            return list.data.anime
+        }
+    } catch (error) {
+        console.log(`ERROR from the API call in search(): ${error}`)
     }
-}*/
+}
+
+export async function compareFavorites(list1, list2) {
+    let common = []
+    for (let i = 0; i < list1.length; i++) {
+        for (let j = 0; j < list2.length; j++) {
+            if (list1[i].mal_id == list2[j].mal_id) {
+                console.log("found")
+                common.push(list1[i].title)
+                break
+            }
+        }
+    }
+    console.log(common)
+    console.log(typeof common)
+    return common
+}
+
+export async function printFav(list) {
+    for (let i = 0; i < list.length; i++) {
+        return list[i]
+    }
+}

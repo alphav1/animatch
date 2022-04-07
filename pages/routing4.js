@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { getList, compareLists, compareUsers, getScoreComp } from '../Elements/Functions'
+import ResultsTile from "../Elements/ResultsTile"
+import { getList, compareLists, compareUsers, getScoreComp, compareFavorites, getFavorites, printFav } from '../Elements/Functions'
 
 export default function toPage() {
 
@@ -10,17 +11,23 @@ export default function toPage() {
     const [User2] = useState(query.friend)
     const [data, setData] = useState({ "watching": {}, "completed": {} })
     const [ScoreList, setScoreList] = useState([])
+    const [Favorites, setFavorites] = useState([])
 
     return (
         <div>
-            <text>Current user: {User1} </text> <div></div>
-            <text>Your friend: {User2}</text> <div></div>
-            <text>Your shared genres: </text>
+            <div>Current user: {User1} </div> <div></div>
+            <div>Your friend: {User2}</div> <div></div>
+            <div>Your shared genres: </div>
             <button onClick={async (e) => setData(await compareUsers(User1, User2))}> Compare Genres </button>
-            <h4>Watching genres: {Object.keys(data["watching"])}</h4>
-            <h4>Completed genres: {Object.keys(data["completed"])} </h4>
-            <text> Your shared anime scores: </text><button onClick={async (e) => setScoreList(await getScoreComp(User1, User2))}> Compare Scores </button> <div> </div>
-            <h4> Scores: {ScoreList.map(data => <body> title: {data.name} {User1} : {data.user1} {User2} : {data.user2} </body>)} </h4>
+            <div>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry} </text>)}</div>
+            <div>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry} </text>)}</div>
+            <div> Your shared anime scores: </div><button onClick={async (e) => setScoreList(await getScoreComp(User1, User2))}> Compare Scores </button> <div> </div>
+            <div> Your shared favorites: <button onClick={async (e) => await setFavorites(compareFavorites(await getFavorites(User1), await getFavorites(User2)))}> Favorites </button></div>
+            {/* <h4> Scores: {ScoreList.map(data => <body> title: {data.name} {User1} : {data.user1} {User2} : {data.user2} difference: {data.difference}</body>)} </h4> */}
+            <div>
+                Scores: {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)}
+                <button onClick={console.log(Favorites)}> Print Favorites </button>
+            </div>
         </div>
     )
 }
