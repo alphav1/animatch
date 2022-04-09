@@ -24,10 +24,6 @@ export default function fromPage() {
         }
     }
 
-    async function Search(user) {
-
-    }
-
     const searchList = async (e) => {
         try {
             setError('call loading')

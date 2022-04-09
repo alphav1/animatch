@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRouter } from "react";
 
 export async function getList(user, param) {
     try {
@@ -11,6 +11,18 @@ export async function getList(user, param) {
         }
     } catch (error) {
         console.log(`ERROR from the API call in search(): ${error}`)
+    }
+}
+
+export async function getFriends(user) {
+    try {
+        let res = await fetch(`https://api.jikan.moe/v4/users/${user}/friends`)
+        if (res.status == 200) {
+            let data = await res.json()
+            return (data.data)
+        }
+    } catch (error) {
+        return (`ERROR from the API call in search(): ${error}`)
     }
 }
 
@@ -64,11 +76,11 @@ export function compareLists(list1, list2) {
 
 export async function compareUsers(user1, user2) {
     let watching = [await getList(user1, "watching"), await getList(user2, "watching")]
-    let completed = [await getList(user1, "completed"), await getList(user2, "completed")]
     let compared1 = compareLists(watching[0], watching[1])
-    let compared2 = compareLists(completed[0], completed[1])
     console.log("comp1:")
     console.log(compared1)
+    let completed = [await getList(user1, "completed"), await getList(user2, "completed")]
+    let compared2 = compareLists(completed[0], completed[1])
     console.log("comp2:")
     console.log(compared2)
     return ({ "watching": compared1, "completed": compared2 })
@@ -126,8 +138,8 @@ export async function compareFavorites(list1, list2) {
             }
         }
     }
-    console.log("common: "+common)
-    console.log("type match: "+ (typeof common == typeof []))
+    console.log("common: " + common)
+    console.log("type match: " + (typeof common == typeof []))
     return common
 }
 
