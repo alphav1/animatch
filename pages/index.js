@@ -14,7 +14,7 @@ export default function fromPage() {
     const routeToCompare = (e) => {
         if (User1 != "" && User2 != "") {
             router.push({
-                pathname: '/results',
+                pathname: '/genres',
                 query: {
                     'name': User1,
                     'friend': User2

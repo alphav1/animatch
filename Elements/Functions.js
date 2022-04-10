@@ -1,13 +1,20 @@
 import { useRouter } from "react";
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function getList(user, param) {
     try {
         console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/animelist/${param}`)
         if (res.status == 200) {
-            console.log(res)
+            //console.log(res)
             let list = await res.json()
             return list.data
+        } else if (res.status == 500) {
+            sleep(500)
+            return getList(user, param)
         }
     } catch (error) {
         console.log(`ERROR from the API call in search(): ${error}`)
@@ -28,6 +35,7 @@ export async function getFriends(user) {
 
 function getGenreList(list) {
     let l1 = {}
+    // while (typeof list == typeof undefined)
     for (let i = 0; i < list.length; i++) {
         let genres = list[i].anime.genres
         for (let x = 0; x < genres.length; x++) {
@@ -64,25 +72,26 @@ function getCommonGenres(l1, l2) {
 }
 
 export function compareLists(list1, list2) {
-    console.log(list1, list2)
+    // console.log(list1, list2)
     let l1 = getGenreList(list1)
     let l2 = getGenreList(list2)
     // console.log("internal listCompare:")
     console.log(l1, l2)
     let common = getCommonGenres(l1, l2)
-    console.log(common)
+    // console.log(common)
     return common
 }
 
 export async function compareUsers(user1, user2) {
     let watching = [await getList(user1, "watching"), await getList(user2, "watching")]
     let compared1 = compareLists(watching[0], watching[1])
-    console.log("comp1:")
-    console.log(compared1)
+    // console.log("comp1:")
+    // console.log(compared1)
+    sleep(1000)
     let completed = [await getList(user1, "completed"), await getList(user2, "completed")]
     let compared2 = compareLists(completed[0], completed[1])
-    console.log("comp2:")
-    console.log(compared2)
+    // console.log("comp2:")
+    // console.log(compared2)
     return ({ "watching": compared1, "completed": compared2 })
 }
 
@@ -90,7 +99,7 @@ export async function getScore(user) {
     let list = await getList(user, "completed")
     let scoreList = []
     for (let i = 0; i < list.length; i++) {
-        console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
+        //console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
         scoreList.push({ "name": list[i].anime.title, "score": list[i].score })
     }
     return scoreList
@@ -107,7 +116,7 @@ export async function getScoreComp(user1, user2) {
             }
         }
     }
-    console.log(commList)
+    //console.log(commList)
     console.log("done")
     return commList
 }
@@ -117,9 +126,9 @@ export async function getFavorites(user) {
         console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/favorites`)
         if (res.status == 200) {
-            console.log(res)
+            //console.log(res)
             let list = await res.json()
-            console.log(list.data.anime)
+            //console.log(list.data.anime)
             return list.data.anime
         }
     } catch (error) {
@@ -132,14 +141,14 @@ export async function compareFavorites(list1, list2) {
     for (let i = 0; i < list1.length; i++) {
         for (let j = 0; j < list2.length; j++) {
             if (list1[i].mal_id == list2[j].mal_id) {
-                console.log("found")
+                //console.log("found")
                 common.push(list1[i].title)
                 break
             }
         }
     }
-    console.log("common: " + common)
-    console.log("type match: " + (typeof common == typeof []))
+    // console.log("common: " + common)
+    // console.log("type match: " + (typeof common == typeof []))
     return common
 }
 
@@ -147,4 +156,11 @@ export async function printFav(list) {
     for (let i = 0; i < list.length; i++) {
         return list[i]
     }
+}
+
+export function genreScore(wLength, cLength) {
+    const median = 5
+    let addW = (wLength - median) * 4
+    let addC = (cLength - median) * 2
+    return addW + addC
 }
