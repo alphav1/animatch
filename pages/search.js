@@ -1,8 +1,10 @@
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router"
 import { getFriends } from "../Elements/Functions";
-import UserTileSearch from "../Elements/UserTileSearch";
+import Image from 'next/image'
+import Header from '../Elements/Header'
+import Footer from '../Elements/Footer'
+import hStyle from '../styles/Header.module.css'
 
 export default function toPage({ data }) {
     const { query } = useRouter()
@@ -32,10 +34,23 @@ export default function toPage({ data }) {
 
     return (
         <div>
-            <div>User1: {User1}</div>
-            {/* <div> <button onClick={async (e) => setFriendList(await getFriends(User1))}> Pick Friend </button> </div> */}
-            {/* Friends: {FriendList.map(user => <UserTileSearch key={user.username} data={user} />)} */}
-            <div> User2: {data.map(inst => <button onClick={(e) => { routeToCompare(inst.user.username) }}> {inst.user.username} </button>)} </div>
+            <body className={hStyle.Background1}>
+
+                <Header></Header>
+
+                <text className={hStyle.InputField}>
+
+                    <div> User1: {User1} </div>
+                    {/* <div> <button onClick={async (e) => setFriendList(await getFriends(User1))}> Pick Friend </button> </div> */}
+                    {/* Friends: {FriendList.map(user => <UserTileSearch key={user.username} data={user} />)} */}
+                    <div> User2: {data.map(inst => <button onClick={(e) => { routeToCompare(inst.user.username) }}> {inst.user.username} </button>)} </div>
+                </text>
+
+                <Footer></Footer>
+
+            </body>
+
+
         </div>
     )
 }

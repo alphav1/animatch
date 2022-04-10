@@ -1,0 +1,94 @@
+/* @font-face {
+    font-family: "agrevuecyr-roman-medium";
+    src: url("https://www.dafontfree.net/data/22/a/110469/AGREVC.ttf") format("woff"),
+        url("https://www.dafontfree.net/data/22/a/110469/AGREVC.ttf") format("opentype"),
+        url("https://www.dafontfree.net/data/22/a/110469/AGREVC.ttf") format("truetype");
+} */
+
+.MainPageBackground {
+    /* background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: 20vw 10vw 40vw 10vw 20vw;
+    grid-template-rows: 20vh 10vh 50vh 5vh 15vh;
+    grid-template-areas:
+        ". title ."
+        ". . . . ."
+        ". main main main ."
+        ". . . . ."
+        ". . footer . .";
+    justify-content: center; */
+}
+
+.Title {
+    /* margin: auto;
+    padding: 15px;
+    text-align: center;
+    background: #2e51a2;
+    color: rgb(255, 255, 255);
+    grid-area: title; */
+}
+
+.Background1 {
+    /* background-color: rgb(255, 255, 255);
+    display: inline-grid;
+    grid-template-columns: 1vw 98vw 1vw;
+    grid-template-rows: 25vh 50vh 25vh;
+    grid-template-areas:
+        ". header ."
+        ". main ."
+        ". footer .";
+    justify-content: center; */
+}
+
+.header {
+    /* margin: auto;
+    padding: 15px;
+    text-align: center;
+    background: #2e51a2; */
+}
+
+.HeaderElement1 {}
+
+.InputField {
+    /* padding-top: 2vh;
+    font-family: verdana;
+    background: #2e51a2;
+    color: #ffffff;
+    grid-area: main;
+    align-items: center;
+    text-align: center;
+    font-size: large; */
+}
+
+.Input {
+    /* color: #27282b;
+    font-size: medium;
+    font-family: verdana;
+    height: min-content;
+    text-align: left;
+    width: auto;
+    background-color: #ffffff;
+    display: inline-block; */
+}
+
+.Button {
+    /* color: #27282b;
+    font-family: verdana;
+    height: min-content;
+    text-align: left;
+    width: auto;
+    background-color: #ffffff;
+    display: inline-block; */
+}
+
+.Footer {
+    /* width: max-content;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #2e51a2;
+    font-size: 30px;
+    color: #ffffff;
+    font-family: 'arial';
+    grid-area: footer; */
+}

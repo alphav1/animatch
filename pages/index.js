@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import UserAnimeSearch from '../Elements/UserAnimeSearch'
-import UserTileSearch from '../Elements/UserTileSearch'
-import { getList, getFavorites, getFriends } from '../Elements/Functions'
-import Favorites from '../Elements/Favorites'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image'
+import Header from '../Elements/Header'
+import Footer from '../Elements/Footer'
+import hStyle from '../styles/Header.module.css'
 
 export default function fromPage() {
     const [User1, setUser1] = useState("")
@@ -47,14 +46,25 @@ export default function fromPage() {
 
     return (
         <div>
-            <h1>animatch</h1>
-            Input your MyAnimeList profile name (User1): <input type="text" onChange={(e) => setUser1(e.target.value)}></input>
+            <body className={hStyle.MainPageBackground}>
 
-            <div>Choose from your friend list (User2): <button onClick={async (e) => routeToNext(User1)}> Friend list </button> </div>
+                <Header></Header>
 
-            Or input the second MyAnimeList profile name (User2): <input type="text" onChange={(e) => setUser2(e.target.value)}></input> <button onClick={async (e) => routeToCompare(User1, User2)}> Compare </button>
+                {/* <div><Image src="https://cdn.myanimelist.net/images/anime/1319/92084.jpg?s=90ba2cd72bd9d35f2401aba942a11779" height="300px" width="200px"></Image></div> */}
 
-            {ErrorMsg}
+                <text className={hStyle.InputField}>
+
+                    <div className={hStyle.InputField}>Input your MyAnimeList profile name (User1): <input className={hStyle.Input} type="text" placeholder='Input profile name' onChange={(e) => setUser1(e.target.value)}></input> </div>
+                    {/* <div className={hStyle.InputField}>Input your MyAnimeList profile name (User1) <input className={hStyle.Input} type="text" placeholder='Input profile name' onChange={(e) => setUser1(e.target.value)}></input> </div> */}
+                    <div className={hStyle.InputField}> Choose from your friend list (User2): <button className={hStyle.Button} onClick={async (e) => routeToNext(User1)}> Friend list </button> </div>
+                    <div className={hStyle.InputField}> or input the second MyAnimeList profile name (User2): <input className={hStyle.Input} type="text" placeholder='Input profile name' onChange={(e) => setUser2(e.target.value)}></input> <button className={hStyle.Button} onClick={async (e) => routeToCompare(User1, User2)}> Compare </button> </div>
+
+                    {/* {ErrorMsg} */}
+
+                </text>
+
+                <Footer></Footer>
+            </body>
         </div>
     )
 }
