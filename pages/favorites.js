@@ -7,7 +7,8 @@ import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
 
-export default function toPage() {
+
+export default function favorites({ data }) {
     const { query } = useRouter()
     const [User1] = useState(query.name)
     const [User2] = useState(query.friend)
@@ -46,8 +47,7 @@ export default function toPage() {
                     <div>Current user: {User1} </div> <div></div>
                     <div>Second user: {User2}</div> <div></div>
                     <br></br>
-                    <div> Your shared favorites: <button onClick={async (e) => { setFavoritesArray(await compareFavorites(await getFavorites(User1), await getFavorites(User2))); console.log("updated: " + FavoritesArray); }}> Favorites </button> </div>
-                    <div> Favorites: {FavoritesArray.flatMap(fav => <text> Name: {fav}, </text>)} </div>
+                    <div> Your shared favorites: {data.flatMap(fav => <text> Name: {fav}, </text>)} </div>
                     <br></br>
                     <div> Your final animatch score: <button onClick={async (e) => { }}> ANIMATCH SCORE </button> </div>
 
@@ -60,4 +60,11 @@ export default function toPage() {
 
         </div>
     )
+}
+
+favorites.getInitialProps = async (ctx) => {
+    // console.log("a: " + ctx.query.name + " b: " + ctx.query.friend)
+    const favoriteList = await compareFavorites(await getFavorites(ctx.query.name), await getFavorites(ctx.query.friend));
+    // console.log("genres: " + matchingGenres)
+    return { data: favoriteList }
 }

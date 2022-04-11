@@ -15,7 +15,7 @@ export async function getList(user, param) {
         } else if (res.status == 500) {
             sleep(500)
             return getList(user, param)
-        }
+        }//TODO
     } catch (error) {
         console.log(`ERROR from the API call in search(): ${error}`)
     }
@@ -27,6 +27,11 @@ export async function getFriends(user) {
         if (res.status == 200) {
             let data = await res.json()
             return (data.data)
+        } else if (res.status == 404) {
+            return [];
+        } else if (res.status == 500) {
+            sleep(500)
+            return getFriends(user, param)
         }
     } catch (error) {
         return (`ERROR from the API call in search(): ${error}`)
@@ -84,6 +89,7 @@ export function compareLists(list1, list2) {
 
 export async function compareUsers(user1, user2) {
     let watching = [await getList(user1, "watching"), await getList(user2, "watching")]
+    //TODO
     let compared1 = compareLists(watching[0], watching[1])
     // console.log("comp1:")
     // console.log(compared1)
@@ -158,6 +164,36 @@ export async function printFav(list) {
     }
 }
 
+export function getAlign(diff) {
+    if (diff == 0) {
+        return "Your opinions are perfectly aligned on"
+    }
+    else if (diff >= 1 && diff <= 2) {
+        return "You agree on"
+    }
+    else if (diff >= 3 && diff <= 4) {
+        return "You disagree on"
+    }
+    else {
+        return "You strongly disagree on"
+    }
+}
+
+export function getOpinion(rating) {
+    if ((rating >= 0) && (rating <= 4)) {
+        return ("very much hated it")
+    }
+    else if ((rating >= 5) && (rating <= 6)) {
+        return ("found it mediocre")
+    }
+    else if ((rating >= 7) && (rating <= 8)) {
+        return ("enjoyed it a lot")
+    }
+    else {
+        return "absolutely loved it"
+    }
+}
+
 export function genreScore(wLength, cLength) {
     const median = 5
     let addW = (wLength - median) * 4
@@ -165,6 +201,18 @@ export function genreScore(wLength, cLength) {
     return addW + addC
 }
 
-export function listScore(param1){
+export function listScore(param1) {
     return param1
 }
+
+export function interpret(errorCode) {
+    switch (parseInt(errorCode)) {
+        case 404:
+            return "ERROR: You have selected an invalid user!"
+            break;
+
+        default:
+            return "undefined error code: " + errorCode;
+    }
+}
+

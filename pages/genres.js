@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { compareUsers } from '../Elements/Functions'
+// import Link from 'next/link'
+
 import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'

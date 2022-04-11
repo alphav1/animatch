@@ -52,7 +52,7 @@ export default function scores({ data }) {
                     <br></br> 
                     {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)} </div> */}
                     <div> Your Shared Scores: </div>
-                    <br></br> 
+                    <br></br>
                     <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div>
                     <br></br>
                     <div><button onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>
@@ -70,5 +70,5 @@ export default function scores({ data }) {
 
 scores.getInitialProps = async (ctx) => {
     const scoreMatches = await getScoreComp(ctx.query.name, ctx.query.friend);
-    return  { data : scoreMatches}
+    return { data: scoreMatches }
 }
