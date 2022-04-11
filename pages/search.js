@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router"
 import { getFriends } from "../Elements/Functions";
+import Link from 'next/link'
 import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
@@ -10,6 +11,18 @@ export default function toPage({ data }) {
     const { query } = useRouter()
     const router = useRouter()
     const [User1] = useState(query.name)
+
+   
+    const errRoute = (backRoute, errCode) => {
+        router.push({
+            pathname: backRoute,
+            query: {
+                "name": User1,
+                "errCode" : errCode
+            }
+        })
+        return "routing finished"
+    }
 
     const routeToCompare = (name) => {
         if (User1 != "" && name != "") {
@@ -32,14 +45,17 @@ export default function toPage({ data }) {
         }
     }
 
-    return (
+    return ( 
+        data.length == 0 ?
+        <div> Invalid user, go <Link href={`/?name=${User1}&errCode=${404}`}> Home </Link></div>
+        :
+        
         <div>
             <body className={hStyle.Background1}>
 
                 <Header></Header>
 
                 <text className={hStyle.InputField}>
-
                     <div> User1: {User1} </div>
                     {/* <div> <button onClick={async (e) => setFriendList(await getFriends(User1))}> Pick Friend </button> </div> */}
                     {/* Friends: {FriendList.map(user => <UserTileSearch key={user.username} data={user} />)} */}

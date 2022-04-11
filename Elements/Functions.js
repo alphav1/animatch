@@ -164,3 +164,7 @@ export function genreScore(wLength, cLength) {
     let addC = (cLength - median) * 2
     return addW + addC
 }
+
+export function listScore(param1){
+    return param1
+}
