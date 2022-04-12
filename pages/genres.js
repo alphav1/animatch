@@ -56,6 +56,7 @@ export default function genres({ data }) {
                         <div>Second user: {User2}</div> <div></div>
                         <br></br>
                         {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
+                        You share {Object.keys(data["watching"]).length} genre(s) from the anime you're currently watching, and {Object.keys(data["completed"]).length} genre(s) from the ones you completed.
                         <div>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry}, </text>)}</div>
                         <div>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry}, </text>)}</div>
                         <br></br>

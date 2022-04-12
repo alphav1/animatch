@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ResultsTile from "../Elements/ResultsTile"
-import { getScoreComp, listScore } from '../Elements/Functions'
+import { getAlignVal, getScoreComp, listScore } from '../Elements/Functions'
 import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
@@ -22,7 +22,8 @@ export default function scores({ data }) {
                 query: {
                     'name': User1,
                     'friend': User2,
-                    'fScore': parseInt(query.gscore) + listScore(1) //TODO here a function to match the fav scores 
+                    'gScore': parseInt(query.gscore),
+                    'fScore': listScore(getAlignVal(data))
                 }
             })
         } else {
@@ -51,8 +52,8 @@ export default function scores({ data }) {
                     {/* <div> Your shared anime scores: <button onClick={async (e) => setScoreList(await getScoreComp(User1, User2))}> Compare Scores </button> 
                     <br></br> 
                     {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)} </div> */}
+                    <div> You share {data.length} anime scores together. </div> <br></br>
                     <div> Your Shared Scores: </div>
-                    <br></br>
                     <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div>
                     <br></br>
                     <div><button onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>

@@ -4,7 +4,6 @@ function sleep(ms) {
 
 export async function getList(user, param) {
     try {
-        console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/animelist/${param}`)
 
         if (res.status == 200) {
@@ -82,7 +81,7 @@ export function compareLists(list1, list2) {
     let l1 = getGenreList(list1)
     let l2 = getGenreList(list2)
     // console.log("internal listCompare:")
-    console.log(l1, l2)
+    // console.log(l1, l2)
     let common = getCommonGenres(l1, l2)
     // console.log(common)
     return common
@@ -128,14 +127,14 @@ export async function getScoreComp(user1, user2) {
             }
         }
     }
-    //console.log(commList)
-    console.log("done")
+    // console.log(commList)
+    // console.log("done")
     return commList
 }
 
 export async function getFavorites(user) {
     try {
-        console.log('call loading')
+        // console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/favorites`)
         if (res.status == 200) {
             //console.log(res)
@@ -185,6 +184,31 @@ export function getAlign(diff) {
     }
 }
 
+export function getAlignVal(data) {
+    let perf = 0
+    let agr = 0
+    let dis = 0
+    let sdis = 0
+    for (let i = 0; i < (Object.values(data).length); i++)
+        if (data[i].difference == 0) {
+            perf++
+        }
+        else if ((data[i].difference >= 1) && (data[i].difference <= 2)) {
+            agr++
+        }
+        else if ((data[i].difference >= 3) && (data[i].difference <= 4)) {
+            dis++
+        }
+        else {
+            sdis++
+        }
+    console.log("perf" + perf)
+    console.log("agr" + agr)
+    console.log("dis" + dis)
+    console.log("sdis" + sdis)
+    return { "perf": perf, "agr": agr, "dis": dis, "sdis": sdis }
+}
+
 export function getOpinion(rating) {
     if ((rating >= 0) && (rating <= 4)) {
         return ("very much hated it")
@@ -201,14 +225,24 @@ export function getOpinion(rating) {
 }
 
 export function genreScore(wLength, cLength) {
-    const median = 5
-    let addW = (wLength - median) * 4
-    let addC = (cLength - median) * 2
-    return addW + addC
+    // const median = 5
+    // let addW = (wLength - median) * 4
+    // let addC = (cLength - median) * 2
+    let addW = (wLength) * 2
+    let addC = (cLength) * 1
+    return (parseInt(addW) + parseInt(addC))
 }
 
-export function listScore(param1) {
-    return param1
+export function listScore(data) {
+    let addP = (data["perf"]) * 3
+    console.log(addP)
+    let addA = (data["agr"]) * 1
+    console.log(addA)
+    let addD = (data["dis"]) * (-1)
+    console.log(addD)
+    let addS = (data["sdis"]) * (-4)
+    console.log(addS)
+    return (addP + addA + addD + addS)
 }
 
 export function interpret(errorCode) {
@@ -226,3 +260,10 @@ export function interpret(errorCode) {
     }
 }
 
+export function getAniScore(fScore, gScore, data) {
+    // console.log(fScore)
+    // console.log(gScore)
+    // console.log(data.length)
+    const AniScore = (parseInt(fScore) + parseInt(gScore) + parseInt(data.length * 3))
+    return (AniScore)
+}
