@@ -12,18 +12,6 @@ export default function search({ data }) {
     const router = useRouter()
     const [User1] = useState(query.name)
 
-
-    const errRoute = (backRoute, errCode) => {
-        router.push({
-            pathname: backRoute,
-            query: {
-                "name": User1,
-                "errCode": errCode
-            }
-        })
-        return "routing finished"
-    }
-
     const routeToCompare = (name) => {
         if (User1 != "" && name != "") {
             router.push({
@@ -46,8 +34,8 @@ export default function search({ data }) {
     }
 
     return (
-        data.length == 0 ?
-            <div> Invalid user, go <Link href={`/?name=${User1}&errCode=${404}`}> Home </Link></div>
+        (typeof data == typeof 0) ? //try if user has no friends
+            <div> An error has occurred, go <Link href={`/?name=${User1}&errCode=${data}`}> HOME </Link></div>
             :
 
             <div>

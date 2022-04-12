@@ -12,29 +12,6 @@ export default function favorites({ data }) {
     const { query } = useRouter()
     const [User1] = useState(query.name)
     const [User2] = useState(query.friend)
-    const [ScoreList, setScoreList] = useState([]);
-    const [FavoritesArray, setFavoritesArray] = useState([])
-
-    const routeToCompare = (name) => {
-        if (User1 != "" && name != "") {
-            router.push({
-                pathname: '/genres',
-                query: {
-                    'name': User1,
-                    'friend': name
-                }
-            })
-        } else {
-            if (User1 == "" && name == "") {
-                console.log("ERROR: please enter a valid username and friend")
-            } else if (name != "") {
-                console.log("ERROR: please set a valid User parameter")
-            } else {
-                console.log("ERROR: please set a valid Friend parameter")
-            }
-
-        }
-    }
 
     return (
         <div>

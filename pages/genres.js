@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { compareUsers } from '../Elements/Functions'
 // import Link from 'next/link'
-
 import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
 import { genreScore } from "../Elements/Functions";
+import Link from 'next/link'
 
 export default function genres({ data }) {
     const { query } = useRouter()
@@ -38,30 +38,37 @@ export default function genres({ data }) {
     }
 
     return (
-        <div>
-            <body className={hStyle.Background1}>
-
-                <Header></Header>
-
-                <text className={hStyle.InputField}>
-
-                    <div>Current user: {User1} </div> <div></div>
-                    <div>Second user: {User2}</div> <div></div>
-                    <br></br>
-                    {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
-                    <div>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry}, </text>)}</div>
-                    <div>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry}, </text>)}</div>
-                    <br></br>
-                    <div><button onClick={async (e) => routeToCompare(User1, User2)}> Get your score comparison </button></div>
-
+        (typeof data == typeof 0) ?
+            <div>
+                <text>
+                    An error has occurred, go <Link href={`/?name=${User1}&&errCode=${data}`}> HOME </Link> <br></br>
                 </text>
+            </div> :
 
-                <Footer></Footer>
+            <div>
+                <body className={hStyle.Background1}>
 
-            </body>
+                    <Header></Header>
+
+                    <text className={hStyle.InputField}>
+
+                        <div>Current user: {User1} </div> <div></div>
+                        <div>Second user: {User2}</div> <div></div>
+                        <br></br>
+                        {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
+                        <div>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry}, </text>)}</div>
+                        <div>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry}, </text>)}</div>
+                        <br></br>
+                        <div><button onClick={async (e) => routeToCompare(User1, User2)}> Get your score comparison </button></div>
+
+                    </text>
+
+                    <Footer></Footer>
+
+                </body>
 
 
-        </div>
+            </div>
     )
 }
 

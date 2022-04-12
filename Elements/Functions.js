@@ -1,5 +1,3 @@
-import { useRouter } from "react";
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -8,14 +6,16 @@ export async function getList(user, param) {
     try {
         console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/animelist/${param}`)
+
         if (res.status == 200) {
-            //console.log(res)
             let list = await res.json()
             return list.data
         } else if (res.status == 500) {
             sleep(500)
             return getList(user, param)
-        }//TODO
+        } else {
+            return (res.status)
+        }
     } catch (error) {
         console.log(`ERROR from the API call in search(): ${error}`)
     }
@@ -27,12 +27,13 @@ export async function getFriends(user) {
         if (res.status == 200) {
             let data = await res.json()
             return (data.data)
-        } else if (res.status == 404) {
-            return [];
         } else if (res.status == 500) {
+            console.log(res.status)
             sleep(500)
             return getFriends(user, param)
-        }
+        } else {
+            return (res.status)
+        }//TODO
     } catch (error) {
         return (`ERROR from the API call in search(): ${error}`)
     }
@@ -89,7 +90,12 @@ export function compareLists(list1, list2) {
 
 export async function compareUsers(user1, user2) {
     let watching = [await getList(user1, "watching"), await getList(user2, "watching")]
-    //TODO
+    if (typeof watching[0] == typeof 0) {
+        return watching[0]
+    }
+    else if (typeof watching[1] == typeof 0) {
+        return watching[1]
+    }
     let compared1 = compareLists(watching[0], watching[1])
     // console.log("comp1:")
     // console.log(compared1)
@@ -208,11 +214,15 @@ export function listScore(param1) {
 export function interpret(errorCode) {
     switch (parseInt(errorCode)) {
         case 404:
-            return "ERROR: You have selected an invalid user!"
-            break;
-
+            return "ERROR 404: You have selected an invalid user!"
+        case 429:
+            return "ERROR 429: Too many requests"
+        case 400:
+            return "ERROR 400: Bad request"
+        case 500:
+            return "ERROR 500: Internal Server Error"
         default:
-            return "undefined error code: " + errorCode;
+            return "error " + errorCode;
     }
 }
 
