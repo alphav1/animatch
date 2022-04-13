@@ -31,7 +31,7 @@ function getAlign(diff) {
         return "Your opinions are perfectly aligned - "
     }
     else if (diff >= 1 && diff <= 2) {
-        return "You agree - "
+        return "You vaguely agree - "
     }
     else if (diff >= 3 && diff <= 4) {
         return "You disagree - "

@@ -153,7 +153,7 @@ export async function compareFavorites(list1, list2) {
         for (let j = 0; j < list2.length; j++) {
             if (list1[i].mal_id == list2[j].mal_id) {
                 //console.log("found")
-                common.push(list1[i].title)
+                common.push({"title" : list1[i].title, "image" : list1[i].images.jpg.large_image_url})
                 break
             }
         }
