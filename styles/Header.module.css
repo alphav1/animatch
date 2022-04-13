@@ -33,6 +33,17 @@
     /* color: blue; */
 }
 
+.tableS{
+    columns: 2;
+    padding-left: 10%;
+    padding-top: 100px;
+    height: 40%;    
+    width: 100%;
+    background-color: whitesmoke;
+    display: inline-block;
+    /* color: blue; */
+}
+
 .forwardBtn{
     min-width: 75px;
     min-height: 25px;
