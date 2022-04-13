@@ -3,14 +3,13 @@ import { useState } from "react";
 import ResultsTile from "../Elements/ResultsTile"
 import { compareFavorites, getFavorites, getAniScore } from '../Elements/Functions'
 import Image from 'next/image'
+import Link from 'next/link'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
 
 export default function favorites({ data }) {
     const { query } = useRouter()
-    const [User1] = useState(query.name)
-    const [User2] = useState(query.friend)
     const [gScore] = useState(query.gScore)
     const [fScore] = useState(query.fScore)
     const [AniScore, setAniScore] = useState("")
@@ -21,17 +20,15 @@ export default function favorites({ data }) {
 
                 <Header></Header>
 
-                <text className={hStyle.InputField}>
+                <div className={hStyle.InputField}>
 
-                    <div>Current user: {User1} </div> <div></div>
-                    <div>Second user: {User2}</div> <div></div>
-                    <br></br>
-                    <div> You have {data.length} favorites. <br></br>
-                        Your shared favorites: {data.flatMap(fav => <text> Name: {fav}, </text>)} </div>
-                    <br></br>
-                    <div> Your final animatch score: {AniScore} <button onClick={async (e) => { setAniScore(getAniScore(fScore, gScore, data)) }}> ANIMATCH SCORE </button> </div>
+                    <h2 className={hStyle.text}> You have {data.length} shared favorite(s). Your shared favorite(s) name(s): {data.flatMap(fav => <text> {fav}; </text>)} </h2>
+                    <h1 className={hStyle.text}> Your final animatch score: </h1>
+                    <button className={hStyle.aniButton} onClick={async (e) => { setAniScore(getAniScore(fScore, gScore, data)) }}> ANIMATCH SCORE </button>
+                    <h1 className={hStyle.aniFont}> {AniScore} </h1> <text> Note: The higher the Animatch Score, the better in case of similarity! </text>
+                    <text> Want to try again? Click <Link href={`/`}> here. </Link> </text>
 
-                </text>
+                </div>
 
                 <Footer></Footer>
 

@@ -111,7 +111,7 @@ export async function getScore(user) {
     let scoreList = []
     for (let i = 0; i < list.length; i++) {
         //console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
-        scoreList.push({ "name": list[i].anime.title, "score": list[i].score, "image" : list[i].anime.images.jpg.large_image_url })
+        scoreList.push({ "name": list[i].anime.title, "score": list[i].score, "image": list[i].anime.images.jpg.large_image_url })
     }
     return scoreList
 }
@@ -123,7 +123,7 @@ export async function getScoreComp(user1, user2) {
     for (let i = 0; i < l1.length; i++) {
         for (let x = 0; x < l2.length; x++) {
             if (l2[x].name == l1[i].name && l2[x].score != 0 && l1[i].score != 0) {
-                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score, "difference": Math.abs(l1[i].score - l2[x].score), "image" : l1[i].image })
+                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score, "difference": Math.abs(l1[i].score - l2[x].score), "image": l1[i].image })
             }
         }
     }
@@ -266,4 +266,19 @@ export function getAniScore(fScore, gScore, data) {
     // console.log(data.length)
     const AniScore = (parseInt(fScore) + parseInt(gScore) + parseInt(data.length * 3))
     return (AniScore)
+}
+
+export async function getUserPhoto(user) {
+    try {
+        // console.log('call loading')
+        let res = await fetch(`https://api.jikan.moe/v4/users/${user}`)
+        if (res.status == 200) {
+            //console.log(res)
+            let list = await res.json()
+            //console.log(list.data.anime)
+            return list.data.images
+        }
+    } catch (error) {
+        console.log(`ERROR from the API call in search(): ${error}`)
+    }
 }

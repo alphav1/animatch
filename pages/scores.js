@@ -11,8 +11,6 @@ export default function scores({ data }) {
     const { query } = useRouter()
     const [User1] = useState(query.name)
     const [User2] = useState(query.friend)
-    const [ScoreList, setScoreList] = useState([]);
-    const [FavoritesArray, setFavoritesArray] = useState([])
     const router = useRouter()
 
     const routeToCompare = (e) => {
@@ -46,20 +44,17 @@ export default function scores({ data }) {
 
                 <text className={hStyle.InputField}>
 
-                    <div>Current user: {User1} </div> <div></div>
-                    <div>Second user: {User2}</div> <div></div>
-                    <br></br>
                     {/* <div> Your shared anime scores: <button onClick={async (e) => setScoreList(await getScoreComp(User1, User2))}> Compare Scores </button> 
                     <br></br> 
                     {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)} </div> */}
-                    <div> You share {data.length} anime scores together. </div> <br></br>
-                    <div> Your Shared Scores: </div>
-                    {/* <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div> */}
-                        <ul className={hStyle.table}>
-                            {data.map(entry => <CompTile user = {User1} friend = {User2} data = {entry}></CompTile>)}
-                        </ul>
-                    <br></br>
+                    <h1 className={hStyle.text}> You share {data.length} anime scores together. </h1>
                     <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>
+                    <h2 className={hStyle.text}> Your Shared Scores: </h2>
+                    {/* <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div> */}
+                    <ul className={hStyle.table}>
+                        {data.map(entry => <CompTile user={User1} friend={User2} data={entry}></CompTile>)}
+                    </ul>
+                    <br></br>
 
                 </text>
 

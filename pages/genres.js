@@ -55,23 +55,22 @@ export default function genres({ data }) {
 
                         {/* <div>Current user: {User1} </div> <div></div>
                         <div>Second user: {User2}</div> <div></div> */}
-                        <br></br>
                         {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
                         <h1 className={hStyle.text}>You share {Object.keys(data["watching"]).length} genre(s) from the anime you're currently watching, and {Object.keys(data["completed"]).length} genre(s) from the ones you completed.</h1>
-                        { Object.keys(data["watching"]).length != 0 ? 
-                        <div>
-                        <h2 className={hStyle.text}>Watching genres: </h2>
-                        <li className={hStyle.tableS}>{Object.keys(data["watching"]).map(entry => <GenreTile title={entry}/>)}</li></div> 
-                        : <br></br>}
-                        
-                        { Object.keys(data["completed"]).length != 0 ? 
-                        <div>
-                        <h2 className={hStyle.text}>Completed genres:</h2>
-                        <li className={hStyle.tableS}>{Object.keys(data["completed"]).map(entry => <GenreTile title={entry}/>)}</li>
-                        </div>
-                        : <br></br> }
+                        <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Score comparison </button></div>
+                        {Object.keys(data["watching"]).length != 0 ?
+                            <div>
+                                <h2 className={hStyle.text}>Watching genres: </h2>
+                                <li className={hStyle.tableS}>{Object.keys(data["watching"]).map(entry => <GenreTile title={entry} />)}</li></div>
+                            : <br></br>}
+
+                        {Object.keys(data["completed"]).length != 0 ?
+                            <div>
+                                <h2 className={hStyle.text}>Completed genres:</h2>
+                                <li className={hStyle.tableS}>{Object.keys(data["completed"]).map(entry => <GenreTile title={entry} />)}</li>
+                            </div>
+                            : <br></br>}
                         <br></br>
-                        <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Get your score comparison </button></div>
 
                     </text>
 

@@ -2,21 +2,25 @@ import React from 'react'
 import style from '../styles/CompTile.module.css'
 import Image from 'next/image'
 
-class CompTile extends React.Component{
-    render (){
-        return(
+class CompTile extends React.Component {
+    render() {
+        return (
             <ul key={this.props.data.name} className={style.card}>
                 <div className={style.imFrame}>
-                <Image src={this.props.data.image} layout={"responsive"} width={"100px"} height={"100px"}></Image>
+                    <Image src={this.props.data.image} layout={"responsive"} width={"100px"} height={"100px"}></Image>
                 </div>
-                <h2>{this.props.data.name}</h2>
+                <h3>{this.props.data.name}</h3>
+
                 {getAlign(this.props.data.difference)}
-                {this.props.data.difference >= 3 ? 
-                    (<text className={style.text}>{this.props.friend} {getOpinion(this.props.data.user2)} ({this.props.data.user2}) while you {getOpinion(this.props.data.user1)} ({this.props.data.user1}).</text>) : 
-                (this.props.data.difference < 3) && (this.props.data.difference > 0) ? 
-                    (<text className={style.text}>{this.props.friend} {getOpinion(this.props.data.user2)} ({this.props.data.user2}) and you {getOpinion(this.props.data.user1)} ({this.props.data.user1}).</text>) : 
-                this.props.data.difference == 0 ? 
-                    (<text className={style.text}>Your scores perfectly matched on {this.props.data.user1}.</text>) : (<text />)}
+
+                {(this.props.data.difference < 3) && (this.props.data.difference > 0) ?
+                    (<text className={style.text}>{this.props.friend} {getOpinion(this.props.data.user2)} ({this.props.data.user2}) and you {getOpinion(this.props.data.user1)} ({this.props.data.user1}).</text>) :
+
+                    this.props.data.difference >= 3 ?
+                        (<text className={style.text}>{this.props.friend} {getOpinion(this.props.data.user2)} ({this.props.data.user2}) while you {getOpinion(this.props.data.user1)} ({this.props.data.user1}).</text>) :
+
+                        this.props.data.difference == 0 ?
+                            (<text className={style.text}>Your scores perfectly matched on {this.props.data.user1}.</text>) : (<text />)}
             </ul>
         )
     }
