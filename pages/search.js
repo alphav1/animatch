@@ -47,7 +47,7 @@ export default function search({ data }) {
                         <div> User1: {User1} </div>
                         {/* <div> <button onClick={async (e) => setFriendList(await getFriends(User1))}> Pick Friend </button> </div> */}
                         {/* Friends: {FriendList.map(user => <UserTileSearch key={user.username} data={user} />)} */}
-                        <div> User2: {data.map(inst => <button onClick={(e) => { routeToCompare(inst.user.username) }}> {inst.user.username} </button>)} </div>
+                        <div> User2: {data.map(inst => <button className={hStyle.forwardBtn} onClick={(e) => { routeToCompare(inst.user.username) }}> {inst.user.username} </button>)} </div>
                     </text>
 
                     <Footer></Footer>

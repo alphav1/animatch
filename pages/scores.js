@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import ResultsTile from "../Elements/ResultsTile"
+import CompTile from "../Elements/CompTile";
 import { getAlignVal, getScoreComp, listScore } from '../Elements/Functions'
 import Image from 'next/image'
 import Header from '../Elements/Header'
@@ -39,7 +39,7 @@ export default function scores({ data }) {
     }
 
     return (
-        <div>
+        <div className={hStyle.mainDiv}>
             <body className={hStyle.Background1}>
 
                 <Header></Header>
@@ -54,9 +54,12 @@ export default function scores({ data }) {
                     {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)} </div> */}
                     <div> You share {data.length} anime scores together. </div> <br></br>
                     <div> Your Shared Scores: </div>
-                    <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div>
+                    {/* <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div> */}
+                        <ul className={hStyle.table}>
+                            {data.map(entry => <CompTile user = {User1} friend = {User2} data = {entry}></CompTile>)}
+                        </ul>
                     <br></br>
-                    <div><button onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>
+                    <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>
 
                 </text>
 

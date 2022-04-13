@@ -45,22 +45,22 @@ export default function genres({ data }) {
                 </text>
             </div> :
 
-            <div>
-                <body className={hStyle.Background1}>
+            <div className={hStyle.mainDiv}>
+                <body>
 
                     <Header></Header>
 
                     <text className={hStyle.InputField}>
 
-                        <div>Current user: {User1} </div> <div></div>
-                        <div>Second user: {User2}</div> <div></div>
+                        {/* <div>Current user: {User1} </div> <div></div>
+                        <div>Second user: {User2}</div> <div></div> */}
                         <br></br>
                         {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
-                        You share {Object.keys(data["watching"]).length} genre(s) from the anime you're currently watching, and {Object.keys(data["completed"]).length} genre(s) from the ones you completed.
-                        <div>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry}, </text>)}</div>
-                        <div>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry}, </text>)}</div>
+                        <h1 className={hStyle.text}>You share {Object.keys(data["watching"]).length} genre(s) from the anime you're currently watching, and {Object.keys(data["completed"]).length} genre(s) from the ones you completed.</h1>
+                        { Object.keys(data["watching"]).length != 0 ? <h2 className={hStyle.text}>Watching genres: {Object.keys(data["watching"]).map(entry => <text> {entry}, </text>)}</h2> : <br></br>}
+                        { Object.keys(data["completed"]).length != 0 ? <h2 className={hStyle.text}>Completed genres: {Object.keys(data["completed"]).map(entry => <text> {entry}, </text>)}</h2> : <br></br> }
                         <br></br>
-                        <div><button onClick={async (e) => routeToCompare(User1, User2)}> Get your score comparison </button></div>
+                        <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Get your score comparison </button></div>
 
                     </text>
 

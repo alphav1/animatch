@@ -111,7 +111,7 @@ export async function getScore(user) {
     let scoreList = []
     for (let i = 0; i < list.length; i++) {
         //console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
-        scoreList.push({ "name": list[i].anime.title, "score": list[i].score })
+        scoreList.push({ "name": list[i].anime.title, "score": list[i].score, "image" : list[i].anime.images.jpg.large_image_url })
     }
     return scoreList
 }
@@ -123,7 +123,7 @@ export async function getScoreComp(user1, user2) {
     for (let i = 0; i < l1.length; i++) {
         for (let x = 0; x < l2.length; x++) {
             if (l2[x].name == l1[i].name && l2[x].score != 0 && l1[i].score != 0) {
-                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score, "difference": Math.abs(l1[i].score - l2[x].score) })
+                commList.push({ "name": l1[i].name, "user1": l1[i].score, "user2": l2[x].score, "difference": Math.abs(l1[i].score - l2[x].score), "image" : l1[i].image })
             }
         }
     }
