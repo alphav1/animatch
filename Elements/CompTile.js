@@ -7,7 +7,7 @@ class CompTile extends React.Component {
         return (
             <ul key={this.props.data.name} className={style.card}>
                 <div className={style.imFrame}>
-                    <Image src={this.props.data.image} layout={"responsive"} width={"100px"} height={"100px"}></Image>
+                    <Image src={this.props.data.image} layout={"responsive"} width={"300px"} height={"400px"}></Image>
                 </div>
                 <h3>{this.props.data.name}</h3>
 
@@ -21,6 +21,8 @@ class CompTile extends React.Component {
 
                         this.props.data.difference == 0 ?
                             (<text className={style.text}>Your scores perfectly matched on {this.props.data.user1}.</text>) : (<text />)}
+
+                <br></br>
             </ul>
         )
     }

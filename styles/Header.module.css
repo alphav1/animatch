@@ -28,20 +28,8 @@
     padding-top: 0.5vh;
 }
 
-.Background1 {
-    /* background-color: rgb(255, 255, 255);
-    display: inline-grid;
-    grid-template-columns: 1vw 98vw 1vw;
-    grid-template-rows: 25vh 50vh 25vh;
-    grid-template-areas:
-        ". header ."
-        ". main ."
-        ". footer .";
-    justify-content: center; */
-}
-
 .table {
-    columns: 3;
+    /* columns: 3; */
     padding-left: 1vw;
     padding-right: 1vw;
     height: 100%;
@@ -54,6 +42,7 @@
     /* columns: 2; */
     padding-left: 1vw;
     padding-top: 1vh;
+    padding-bottom: 1vh;
     top: 50%;
     width: 100%;
     background-color: whitesmoke;
@@ -88,69 +77,4 @@
 .aniFont {
     color: rgb(46, 81, 162);
     font-style: italic;
-}
-
-.MainPageBackground {
-    /* background-color: rgb(255, 255, 255);
-    display: grid;
-    grid-template-columns: 20vw 10vw 40vw 10vw 20vw;
-    grid-template-rows: 20vh 10vh 50vh 5vh 15vh;
-    grid-template-areas:
-        ". title ."
-        ". . . . ."
-        ". main main main ."
-        ". . . . ."
-        ". . footer . .";
-    justify-content: center; */
-}
-
-.Title {
-    /* margin: auto;
-    padding: 15px;
-    text-align: center;
-    background: #2e51a2;
-    color: rgb(255, 255, 255);
-    grid-area: title; */
-}
-
-.header {
-    /* margin: auto;
-    padding: 15px;
-    text-align: center;
-    background: #2e51a2; */
-}
-
-.HeaderElement1 {}
-
-.Input {
-    /* color: #27282b;
-    font-size: medium;
-    font-family: verdana;
-    height: min-content;
-    text-align: left;
-    width: auto;
-    background-color: #ffffff;
-    display: inline-block; */
-}
-
-.Button {
-    /* color: #27282b;
-    font-family: verdana;
-    height: min-content;
-    text-align: left;
-    width: auto;
-    background-color: #ffffff;
-    display: inline-block; */
-}
-
-.Footer {
-    /* width: max-content;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-    background: #2e51a2;
-    font-size: 30px;
-    color: #ffffff;
-    font-family: 'arial';
-    grid-area: footer; */
 }

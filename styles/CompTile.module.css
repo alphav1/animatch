@@ -1,23 +1,25 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 100%;
+    width: min-content;
+    top: 20vh;
     height: 40%;
     background-color: rgba(255, 255, 255, 0.6);
     color: rgb(46, 81, 162);
     padding: 1%;
     text-align: center;
     align-items: center;
-    /* margin-left: 5%;
-    margin-right: 5%; */
+    margin-left: 1%;
+    margin-right: 1%;
     margin-top: 1vh;
     margin-bottom: 0.5vh;
+    padding-bottom: 1vh;
     display: inline-block;
-    font-size: 1.85vh;
+    font-size: 2vh;
 }
 
 .imFrame {
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 300px;
+    min-height: 400px;
     max-height: 400px;
     max-width: 300px;
     background-color: rgb(46, 81, 162);

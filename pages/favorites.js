@@ -23,12 +23,12 @@ export default function favorites({ data }) {
 
                 <div className={hStyle.InputField}>
 
-                    <h2 className={hStyle.text}> You have {data.length} shared favorite(s). </h2>
-                    {(data.length != 0) ? 
-                    <div>
-                        <h2>Your shared favorite(s):</h2> 
-                        <ul className={hStyle.tableS}>{data.map(fav => <FavTile data={fav}/>)}</ul></div>
-                        : <br/>}
+                    <h1 className={hStyle.text}> You have {data.length} shared favorite(s). </h1>
+                    {(data.length != 0) ?
+                        <div>
+                            <h2 className={hStyle.text}>Your shared favorite(s):</h2>
+                            <ul className={hStyle.tableS}>{data.map(fav => <FavTile data={fav} />)}</ul></div>
+                        : <br />}
                     <h1 className={hStyle.text}> Your final animatch score: </h1>
                     <button className={hStyle.aniButton} onClick={async (e) => { setAniScore(getAniScore(fScore, gScore, data)) }}> ANIMATCH SCORE </button>
                     <h1 className={hStyle.aniFont}> {AniScore} </h1> <text> Note: The higher the Animatch Score, the better in case of similarity! </text>
