@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import ResultsTile from "../Elements/ResultsTile"
 import { compareFavorites, getFavorites, getAniScore } from '../Elements/Functions'
-import Image from 'next/image'
 import Link from 'next/link'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'

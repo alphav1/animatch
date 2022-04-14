@@ -32,7 +32,7 @@ export async function getFriends(user) {
             return getFriends(user, param)
         } else {
             return (res.status)
-        }//TODO
+        }
     } catch (error) {
         return (`ERROR from the API call in search(): ${error}`)
     }
@@ -40,7 +40,6 @@ export async function getFriends(user) {
 
 function getGenreList(list) {
     let l1 = {}
-    // while (typeof list == typeof undefined)
     for (let i = 0; i < list.length; i++) {
         let genres = list[i].anime.genres
         for (let x = 0; x < genres.length; x++) {
@@ -48,7 +47,6 @@ function getGenreList(list) {
             if (l.includes(genres[x].name)) {
                 l1[genres[x].name] += 1
             } else {
-                // console.log('new object: ', genres[x].name)
                 let key = genres[x].name
                 Object.assign(l1, { [key]: 1 })
             }
@@ -77,13 +75,9 @@ function getCommonGenres(l1, l2) {
 }
 
 export function compareLists(list1, list2) {
-    // console.log(list1, list2)
     let l1 = getGenreList(list1)
     let l2 = getGenreList(list2)
-    // console.log("internal listCompare:")
-    // console.log(l1, l2)
     let common = getCommonGenres(l1, l2)
-    // console.log(common)
     return common
 }
 
@@ -96,13 +90,9 @@ export async function compareUsers(user1, user2) {
         return watching[1]
     }
     let compared1 = compareLists(watching[0], watching[1])
-    // console.log("comp1:")
-    // console.log(compared1)
     sleep(1000)
     let completed = [await getList(user1, "completed"), await getList(user2, "completed")]
     let compared2 = compareLists(completed[0], completed[1])
-    // console.log("comp2:")
-    // console.log(compared2)
     return ({ "watching": compared1, "completed": compared2 })
 }
 
@@ -110,7 +100,6 @@ export async function getScore(user) {
     let list = await getList(user, "completed")
     let scoreList = []
     for (let i = 0; i < list.length; i++) {
-        //console.log([i] + " : " + list[i].anime.title + " : " + list[i].score)
         scoreList.push({ "name": list[i].anime.title, "score": list[i].score, "image": list[i].anime.images.jpg.large_image_url })
     }
     return scoreList
@@ -127,19 +116,14 @@ export async function getScoreComp(user1, user2) {
             }
         }
     }
-    // console.log(commList)
-    // console.log("done")
     return commList
 }
 
 export async function getFavorites(user) {
     try {
-        // console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}/favorites`)
         if (res.status == 200) {
-            //console.log(res)
             let list = await res.json()
-            //console.log(list.data.anime)
             return list.data.anime
         }
     } catch (error) {
@@ -152,14 +136,11 @@ export async function compareFavorites(list1, list2) {
     for (let i = 0; i < list1.length; i++) {
         for (let j = 0; j < list2.length; j++) {
             if (list1[i].mal_id == list2[j].mal_id) {
-                //console.log("found")
-                common.push({"title" : list1[i].title, "image" : list1[i].images.jpg.large_image_url})
+                common.push({ "title": list1[i].title, "image": list1[i].images.jpg.large_image_url })
                 break
             }
         }
     }
-    // console.log("common: " + common)
-    // console.log("type match: " + (typeof common == typeof []))
     return common
 }
 
@@ -225,9 +206,6 @@ export function getOpinion(rating) {
 }
 
 export function genreScore(wLength, cLength) {
-    // const median = 5
-    // let addW = (wLength - median) * 4
-    // let addC = (cLength - median) * 2
     let addW = (wLength) * 2
     let addC = (cLength) * 1
     return (parseInt(addW) + parseInt(addC))
@@ -261,21 +239,15 @@ export function interpret(errorCode) {
 }
 
 export function getAniScore(fScore, gScore, data) {
-    // console.log(fScore)
-    // console.log(gScore)
-    // console.log(data.length)
     const AniScore = (parseInt(fScore) + parseInt(gScore) + parseInt(data.length * 3))
     return (AniScore)
 }
 
 export async function getUserPhoto(user) {
     try {
-        // console.log('call loading')
         let res = await fetch(`https://api.jikan.moe/v4/users/${user}`)
         if (res.status == 200) {
-            //console.log(res)
             let list = await res.json()
-            //console.log(list.data.anime)
             return list.data.images
         }
     } catch (error) {

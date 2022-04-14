@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import CompTile from "../Elements/CompTile";
 import { getAlignVal, getScoreComp, listScore } from '../Elements/Functions'
-import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
@@ -25,13 +24,6 @@ export default function scores({ data }) {
                 }
             })
         } else {
-            if (User1 == "" && User2 == "") {
-                setError("ERROR: please enter a valid username and friend")
-            } else if (User2 != "") {
-                setError("ERROR: please set a valid User parameter")
-            } else {
-                setError("ERROR: please set a valid Friend parameter")
-            }
 
         }
     }
@@ -47,7 +39,7 @@ export default function scores({ data }) {
                     {/* <div> Your shared anime scores: <button onClick={async (e) => setScoreList(await getScoreComp(User1, User2))}> Compare Scores </button> 
                     <br></br> 
                     {ScoreList.map(data1 => <ResultsTile data={data1} you={User1} friend={User2} />)} </div> */}
-                    <h1 className={hStyle.text}> You share {data.length} anime scores together. </h1>
+                    <h1 className={hStyle.text}> You share {data.length} anime score(s) together. </h1>
                     <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Favorite comparison </button></div>
                     <h2 className={hStyle.text}> Your Shared Scores: </h2>
                     {/* <div>{data.map(res => <ResultsTile data={res} you={query.name} friend={query.friend} />)}</div> */}

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router"
 import { getFriends } from "../Elements/Functions";
 import Link from 'next/link'
-import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
@@ -22,14 +21,6 @@ export default function search({ data }) {
                 }
             })
         } else {
-            if (User1 == "" && name == "") {
-                console.log("ERROR: please enter a valid username and friend")
-            } else if (name != "") {
-                console.log("ERROR: please set a valid User parameter")
-            } else {
-                console.log("ERROR: please set a valid Friend parameter")
-            }
-
         }
     }
 
@@ -45,8 +36,6 @@ export default function search({ data }) {
 
                     <text className={hStyle.InputField}>
                         <div> User1: {User1} </div> <br></br>
-                        {/* <div> <button onClick={async (e) => setFriendList(await getFriends(User1))}> Pick Friend </button> </div> */}
-                        {/* Friends: {FriendList.map(user => <UserTileSearch key={user.username} data={user} />)} */}
                         <div> Pick User2: <br></br>
                             <text> (Note: If you have trouble finding the User you wish, use Ctrl + F) </text> <br></br> <br></br>
                             {data.map(inst => <button className={hStyle.forwardBtn} onClick={(e) => { routeToCompare(inst.user.username) }}> {inst.user.username} </button>)}  </div>

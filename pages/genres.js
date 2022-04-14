@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { compareUsers } from '../Elements/Functions'
-// import Link from 'next/link'
-import Image from 'next/image'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
 import hStyle from '../styles/Header.module.css'
@@ -27,14 +25,6 @@ export default function genres({ data }) {
                 }
             })
         } else {
-            if (User1 == "" && User2 == "") {
-                setError("ERROR: please enter a valid username and friend")
-            } else if (User2 != "") {
-                setError("ERROR: please set a valid User parameter")
-            } else {
-                setError("ERROR: please set a valid Friend parameter")
-            }
-
         }
     }
 
