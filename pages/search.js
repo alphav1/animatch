@@ -25,7 +25,7 @@ export default function search({ data }) {
     }
 
     return (
-        (typeof data == typeof 0) ? //try if user has no friends
+        (typeof data == typeof 0) ?
             <div> An error has occurred, go <Link href={`/?name=${User1}&errCode=${data}`}> HOME </Link></div>
             :
 
@@ -51,7 +51,6 @@ export default function search({ data }) {
 }
 
 search.getInitialProps = async (ctx) => {
-    const FriendsData = await getFriends(ctx.query.name) //https://nextjs.org/docs/api-reference/data-fetching/get-initial-props
-    //console.log(FriendsData)
+    const FriendsData = await getFriends(ctx.query.name)
     return { data: FriendsData }
 }

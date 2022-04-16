@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { compareUsers } from '../Elements/Functions'
+import Link from 'next/link'
+import { compareUsers, genreScore } from '../Elements/Functions'
 import Header from '../Elements/Header'
 import Footer from '../Elements/Footer'
-import hStyle from '../styles/Header.module.css'
-import { genreScore } from "../Elements/Functions";
-import Link from 'next/link'
 import GenreTile from "../Elements/GenreTile";
+import hStyle from '../styles/Header.module.css'
 
 export default function genres({ data }) {
     const { query } = useRouter()
@@ -43,11 +42,9 @@ export default function genres({ data }) {
 
                     <text className={hStyle.InputField}>
 
-                        {/* <div>Current user: {User1} </div> <div></div>
-                        <div>Second user: {User2}</div> <div></div> */}
-                        {/* <button onClick={async (e) => { console.log(Object.keys(data["watching"]).length) }}>score</button> */}
                         <h1 className={hStyle.text}>You share {Object.keys(data["watching"]).length} genre(s) from the anime you're currently watching, and {Object.keys(data["completed"]).length} genre(s) from the ones you completed.</h1>
                         <div><button className={hStyle.forwardBtn} onClick={async (e) => routeToCompare(User1, User2)}> Score comparison </button></div>
+
                         {Object.keys(data["watching"]).length != 0 ?
                             <div>
                                 <h2 className={hStyle.text}>Watching genres: </h2>
@@ -74,8 +71,6 @@ export default function genres({ data }) {
 }
 
 genres.getInitialProps = async (ctx) => {
-    // console.log("a: " + ctx.query.name + " b: " + ctx.query.friend)
     const matchingGenres = await compareUsers(ctx.query.name, ctx.query.friend);
-    // console.log("genres: " + matchingGenres)
     return { data: matchingGenres }
 }

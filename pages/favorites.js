@@ -44,8 +44,6 @@ export default function favorites({ data }) {
 }
 
 favorites.getInitialProps = async (ctx) => {
-    // console.log("a: " + ctx.query.name + " b: " + ctx.query.friend)
     const favoriteList = await compareFavorites(await getFavorites(ctx.query.name), await getFavorites(ctx.query.friend));
-    // console.log("genres: " + matchingGenres)
     return { data: favoriteList }
 }
